@@ -14,6 +14,8 @@
 
 * { box-sizing: border-box; }
 
+html { overflow-x: hidden; }
+
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -27,7 +29,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 16px 32px;
+  padding: 20px 16px max(32px, env(safe-area-inset-bottom, 32px));
+  padding-left:  max(16px, env(safe-area-inset-left,  16px));
+  padding-right: max(16px, env(safe-area-inset-right, 16px));
 }
 
 .app {
@@ -135,6 +139,7 @@ body {
   padding: 9px 14px;
   border-radius: 14px;
   white-space: nowrap;
+  min-height: 44px;
 }
 
 .actionStart {
@@ -271,6 +276,9 @@ body {
   box-shadow: 0 8px 20px rgba(35, 48, 73, 0.11);
   transition: transform 110ms ease, box-shadow 110ms ease, border-color 110ms ease;
   min-height: 80px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .answerBtn:hover {
@@ -347,9 +355,64 @@ body {
 
 /* ── RESPONSIVE ───────────────────────── */
 
+/* Tablet and large phones (≤ 600px) */
+@media (max-width: 600px) {
+  body { padding-top: 14px; }
+
+  /* Stack topbar: title row, then controls row */
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .titleBlock .title { font-size: 22px; }
+
+  .topbarRight {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Tighten the start screen */
+  .startScreen {
+    margin-top: 16px;
+    padding: 36px 20px 32px;
+  }
+
+  /* Start button fills the card width */
+  .actionStart {
+    width: 100%;
+    padding: 18px 24px;
+  }
+
+  /* Tighten character card */
+  .charCard { padding: 20px 16px 18px; }
+
+  /* Reduce vertical gap between game sections */
+  .gameArea { gap: 10px; }
+}
+
+/* Small phones (≤ 480px): 2-column answer grid */
 @media (max-width: 480px) {
-  .buttonsGrid { grid-template-columns: 1fr; }
+  .buttonsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Hide the "Level" label text — keep icon + number */
+  .levelLabel { display: none; }
+
   .topbarRight { gap: 8px; }
+}
+
+/* Very small phones (≤ 360px): single-column answers */
+@media (max-width: 360px) {
+  .buttonsGrid { grid-template-columns: 1fr; }
+
+  .infoRow { gap: 8px; }
+
+  .actionRow { gap: 8px; }
 }
 
 /* ── START SCREEN ─────────────────────── */
