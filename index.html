@@ -13,7 +13,7 @@
       <div id="viewStart">
         <section class="startScreen" aria-label="Start screen">
           <h1 class="startTitle">Chinese Sparkle!</h1>
-          <p class="startDesc">Learn Chinese characters by choosing the correct meaning.</p>
+          <p class="startDesc">Hear the pronunciation and pick the right Chinese character.</p>
           <button id="startBtn" class="actionBtn actionStart" type="button">Start</button>
         </section>
       </div>
@@ -21,7 +21,7 @@
       <!-- View 2: Game Screen -->
       <div id="viewGame" style="display:none">
 
-        <!-- Top bar: title left · level + stars + home right -->
+        <!-- Top bar -->
         <header class="topbar">
           <div class="titleBlock">
             <h1 class="title">Chinese Sparkle!</h1>
@@ -43,40 +43,36 @@
         <!-- Main game area -->
         <section id="gameCard" class="gameArea" aria-label="Question card">
 
-          <!-- Large character card -->
-          <div class="charCard">
-            <div class="charCardLabel">Character</div>
-            <div id="characterHanzi" class="hanzi" aria-live="polite">山</div>
+          <!-- Question: listen and find -->
+          <div class="questionCard">
+            <div class="questionLabel">Listen — then choose the correct character</div>
+            <div id="pinyinText" class="pinyinDisplay" aria-live="polite">shān</div>
+            <div id="emojiHint" class="questionEmoji" aria-live="polite">⛰️</div>
           </div>
 
-          <!-- Pinyin + Hint side by side -->
-          <div class="infoRow">
-            <div class="infoCard infoCardBlue">
-              <div class="infoCardLabel">Pinyin</div>
-              <div id="pinyinText" class="infoCardValue" aria-live="polite">shān</div>
-            </div>
-            <div class="infoCard infoCardPurple">
-              <div class="infoCardLabel">Hint</div>
-              <div id="emojiHint" class="infoCardEmoji" aria-live="polite">⛰️</div>
-            </div>
+          <!-- Reward animation (hidden until correct answer) -->
+          <div id="rewardScene" class="rewardScene">
+            <img class="sceneSnowman" src="assets/snowman.svg" alt="">
+            <img id="sceneCat"      class="sceneCat"      src="assets/cat.svg"      alt="">
+            <img id="sceneSnowball" class="sceneSnowball" src="assets/snowball.svg" alt="">
           </div>
 
           <!-- Progress -->
           <p id="progressText" class="progressText" aria-live="polite">Card 1 of 15</p>
 
-          <!-- Answer buttons -->
+          <!-- 3 Chinese character choice buttons -->
           <div id="buttonsGrid" class="buttonsGrid" role="group" aria-label="Answer choices">
             <!-- Injected by script.js -->
           </div>
 
           <!-- Feedback -->
-          <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
-          <div id="answerRevealed" class="answerRevealed" aria-live="polite"></div>
+          <div id="feedback"        class="feedback"        role="status" aria-live="polite"></div>
+          <div id="answerRevealed"  class="answerRevealed"                aria-live="polite"></div>
 
           <!-- Speak + Next -->
           <div class="actionRow" role="group" aria-label="Game actions">
             <button id="speakBtn" class="actionBtn actionSpeak" type="button">🔊 Speak</button>
-            <button id="nextBtn" class="actionBtn actionNext" type="button" disabled>Next →</button>
+            <button id="nextBtn"  class="actionBtn actionNext"  type="button" disabled>Next →</button>
           </div>
           <p class="nextHelp" id="nextHelp" aria-live="polite">
             Answer correctly to unlock Next.

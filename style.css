@@ -34,15 +34,13 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 16px));
 }
 
-.app {
-  width: min(640px, 100%);
-}
+.app { width: min(640px, 100%); }
 
-/* ── UTILITY ──────────────────────────── */
+/* ── UTILITY ──────────────────────────────── */
 
 .hidden { display: none; }
 
-/* ── TOP BAR ──────────────────────────── */
+/* ── TOP BAR ──────────────────────────────── */
 
 .topbar {
   display: flex;
@@ -68,7 +66,7 @@ body {
   justify-content: flex-end;
 }
 
-/* ── LEVEL + STAR BADGES ──────────────── */
+/* ── LEVEL + STAR BADGES ──────────────────── */
 
 .levelWrap,
 .starsWrap {
@@ -81,8 +79,7 @@ body {
   box-shadow: 0 6px 18px var(--shadow);
 }
 
-.levelIcon,
-.starIcon { font-size: 20px; }
+.levelIcon, .starIcon { font-size: 20px; }
 
 .levelLabel {
   font-weight: 800;
@@ -98,12 +95,9 @@ body {
   color: var(--purple);
 }
 
-.starsCount {
-  font-weight: 800;
-  font-size: 18px;
-}
+.starsCount { font-weight: 800; font-size: 18px; }
 
-/* ── SHARED ACTION BUTTON BASE ────────── */
+/* ── SHARED ACTION BUTTON BASE ────────────── */
 
 .actionBtn {
   appearance: none;
@@ -118,20 +112,11 @@ body {
   transition: transform 110ms ease, filter 110ms ease, opacity 110ms ease;
 }
 
-.actionBtn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  filter: brightness(1.06);
-}
-
+.actionBtn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.06); }
 .actionBtn:active:not(:disabled) { transform: translateY(0); }
+.actionBtn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
 
-.actionBtn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* ── BUTTON VARIANTS ──────────────────── */
+/* ── BUTTON VARIANTS ──────────────────────── */
 
 .actionHome {
   background: linear-gradient(135deg, #ff9f43, #f7651b);
@@ -150,17 +135,10 @@ body {
   margin-top: 6px;
 }
 
-.actionSpeak {
-  background: linear-gradient(135deg, #8a5cff, #2f7dff);
-  font-size: 18px;
-}
+.actionSpeak { background: linear-gradient(135deg, #8a5cff, #2f7dff); font-size: 18px; }
+.actionNext  { background: linear-gradient(135deg, #27c07a, #1da362); font-size: 18px; }
 
-.actionNext {
-  background: linear-gradient(135deg, #27c07a, #1da362);
-  font-size: 18px;
-}
-
-/* ── GAME AREA ────────────────────────── */
+/* ── GAME AREA ────────────────────────────── */
 
 .gameArea {
   display: flex;
@@ -168,14 +146,14 @@ body {
   gap: 14px;
 }
 
-/* ── CHARACTER CARD ───────────────────── */
+/* ── QUESTION CARD ────────────────────────── */
 
-.charCard {
+.questionCard {
   background: var(--card);
   border: 2px solid rgba(138, 92, 255, 0.18);
-  border-radius: 28px;
-  box-shadow: 0 12px 32px var(--shadow);
-  padding: 28px 20px 24px;
+  border-radius: 26px;
+  box-shadow: 0 10px 28px var(--shadow);
+  padding: 20px 16px 16px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -183,68 +161,87 @@ body {
   gap: 8px;
 }
 
-.charCardLabel {
-  font-weight: 800;
+.questionLabel {
   font-size: 12px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   opacity: 0.5;
 }
 
-.hanzi {
-  font-size: clamp(90px, 22vw, 144px);
+.pinyinDisplay {
+  font-size: clamp(44px, 10vw, 68px);
   font-weight: 900;
+  line-height: 1.05;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.questionEmoji {
+  font-size: clamp(28px, 6vw, 42px);
   line-height: 1;
 }
 
-/* ── INFO ROW: PINYIN + HINT ──────────── */
+/* ── REWARD ANIMATION SCENE ───────────────── */
 
-.infoRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.infoCard {
+.rewardScene {
+  position: relative;
+  width: 100%;
+  height: 180px;
   border-radius: 22px;
-  padding: 16px 12px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 6px 16px var(--shadow);
+  background: linear-gradient(180deg, #cce8ff 0%, #e4f3ff 65%, #b8dcf8 100%);
+  border: 2px solid rgba(47, 125, 255, 0.18);
+  overflow: hidden;
+  display: none; /* JS controls visibility */
 }
 
-.infoCardBlue {
-  background: rgba(47, 125, 255, 0.09);
-  border: 2px solid rgba(47, 125, 255, 0.22);
+.sceneSnowman {
+  position: absolute;
+  bottom: 0;
+  left: 28%;
+  transform: translateX(-50%);
+  height: 168px;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
 }
 
-.infoCardPurple {
-  background: rgba(138, 92, 255, 0.09);
-  border: 2px solid rgba(138, 92, 255, 0.22);
+.sceneCat {
+  position: absolute;
+  bottom: 0;
+  height: 108px;
+  z-index: 1;
+  opacity: 0;
+  /* transitions driven by JS inline styles */
+  transition: left 0.55s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.25s ease;
+  pointer-events: none;
+  user-select: none;
+  transform: translateX(-50%);
 }
 
-.infoCardLabel {
-  font-weight: 800;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.7px;
-  opacity: 0.55;
+.sceneSnowball {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  transition: left 0.40s ease-in, bottom 0.40s ease-out, opacity 0.08s ease;
+  pointer-events: none;
+  user-select: none;
 }
 
-.infoCardValue {
-  font-size: clamp(22px, 5vw, 32px);
-  font-weight: 800;
+@keyframes catHitBounce {
+  0%   { transform: translateX(-50%) rotate(0deg)   translateY(0);     }
+  18%  { transform: translateX(-62%) rotate(-22deg) translateY(-15px); }
+  38%  { transform: translateX(-42%) rotate(16deg)  translateY(-8px);  }
+  58%  { transform: translateX(-53%) rotate(-9deg)  translateY(-2px);  }
+  78%  { transform: translateX(-47%) rotate(6deg)   translateY(0);     }
+  100% { transform: translateX(-50%) rotate(0deg)   translateY(0);     }
 }
 
-.infoCardEmoji {
-  font-size: clamp(36px, 8vw, 52px);
-  line-height: 1.1;
-}
+.catHitAnim { animation: catHitBounce 0.55s ease forwards; }
 
-/* ── PROGRESS ─────────────────────────── */
+/* ── PROGRESS ─────────────────────────────── */
 
 .progressText {
   margin: 0;
@@ -255,7 +252,7 @@ body {
   opacity: 0.85;
 }
 
-/* ── ANSWER BUTTONS ───────────────────── */
+/* ── ANSWER BUTTONS (hanzi choices) ──────── */
 
 .buttonsGrid {
   display: grid;
@@ -265,27 +262,22 @@ body {
 
 .answerBtn {
   appearance: none;
-  padding: 20px 10px;
+  padding: 16px 8px;
   border-radius: 22px;
   border: 2px solid rgba(35, 48, 73, 0.08);
   cursor: pointer;
-  font-size: clamp(16px, 3vw, 20px);
-  font-weight: 800;
+  /* Large enough to read hanzi clearly */
+  font-size: clamp(38px, 9vw, 56px);
+  font-weight: 900;
   color: var(--ink);
   background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.72));
   box-shadow: 0 8px 20px rgba(35, 48, 73, 0.11);
   transition: transform 110ms ease, box-shadow 110ms ease, border-color 110ms ease;
-  min-height: 80px;
+  min-height: 96px;
   overflow-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
 }
 
-.answerBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(35, 48, 73, 0.16);
-}
-
+.answerBtn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(35,48,73,0.16); }
 .answerBtn:active { transform: translateY(0); }
 
 .answerBtn.correct {
@@ -298,7 +290,7 @@ body {
   background: linear-gradient(180deg, rgba(255,79,163,0.18), rgba(255,255,255,0.7));
 }
 
-/* ── FEEDBACK ─────────────────────────── */
+/* ── FEEDBACK ─────────────────────────────── */
 
 .feedback {
   min-height: 28px;
@@ -317,7 +309,7 @@ body {
   opacity: 0.88;
 }
 
-/* ── SPEAK + NEXT ROW ─────────────────── */
+/* ── SPEAK + NEXT ROW ─────────────────────── */
 
 .actionRow {
   display: grid;
@@ -334,7 +326,7 @@ body {
   text-align: center;
 }
 
-/* ── FOOTER ───────────────────────────── */
+/* ── FOOTER ───────────────────────────────── */
 
 .footerHelp {
   text-align: center;
@@ -353,69 +345,34 @@ body {
   transform: translateY(1px);
 }
 
-/* ── RESPONSIVE ───────────────────────── */
+/* ── RESPONSIVE ───────────────────────────── */
 
-/* Tablet and large phones (≤ 600px) */
 @media (max-width: 600px) {
   body { padding-top: 14px; }
 
-  /* Stack topbar: title row, then controls row */
-  .topbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-
+  .topbar { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 14px; }
   .titleBlock .title { font-size: 22px; }
+  .topbarRight { justify-content: space-between; width: 100%; }
 
-  .topbarRight {
-    justify-content: space-between;
-    width: 100%;
-  }
+  .startScreen { margin-top: 16px; padding: 36px 20px 32px; }
+  .actionStart { width: 100%; padding: 18px 24px; }
 
-  /* Tighten the start screen */
-  .startScreen {
-    margin-top: 16px;
-    padding: 36px 20px 32px;
-  }
-
-  /* Start button fills the card width */
-  .actionStart {
-    width: 100%;
-    padding: 18px 24px;
-  }
-
-  /* Tighten character card */
-  .charCard { padding: 20px 16px 18px; }
-
-  /* Reduce vertical gap between game sections */
   .gameArea { gap: 10px; }
+  .questionCard { padding: 16px 12px 14px; }
 }
 
-/* Small phones (≤ 480px): 2-column answer grid */
 @media (max-width: 480px) {
-  .buttonsGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  /* Hide the "Level" label text — keep icon + number */
-  .levelLabel { display: none; }
-
+  .buttonsGrid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .levelLabel  { display: none; }
   .topbarRight { gap: 8px; }
 }
 
-/* Very small phones (≤ 360px): single-column answers */
 @media (max-width: 360px) {
   .buttonsGrid { grid-template-columns: 1fr; }
-
-  .infoRow { gap: 8px; }
-
-  .actionRow { gap: 8px; }
+  .actionRow   { gap: 8px; }
 }
 
-/* ── START SCREEN ─────────────────────── */
+/* ── START SCREEN ─────────────────────────── */
 
 .startScreen {
   background: var(--card);
