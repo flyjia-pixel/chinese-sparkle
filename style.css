@@ -179,6 +179,30 @@ body {
   background-clip: text;
 }
 
+.pinyinRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pinyinSpeakBtn {
+  appearance: none;
+  border: none;
+  background: linear-gradient(135deg, #8a5cff, #2f7dff);
+  border-radius: 999px;
+  width: 52px;
+  height: 52px;
+  font-size: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(138, 92, 255, 0.35);
+  transition: transform 110ms ease, filter 110ms ease;
+  line-height: 1;
+}
+
+.pinyinSpeakBtn:hover  { transform: scale(1.08); filter: brightness(1.1); }
+.pinyinSpeakBtn:active { transform: scale(0.96); }
+
 .questionEmoji {
   font-size: clamp(28px, 6vw, 42px);
   line-height: 1;

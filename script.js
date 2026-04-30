@@ -24,7 +24,8 @@
   const buttonsGridEl  = document.getElementById("buttonsGrid");
   const feedbackEl     = document.getElementById("feedback");
   const answerRevealedEl = document.getElementById("answerRevealed");
-  const speakBtnEl     = document.getElementById("speakBtn");
+  const speakBtnEl         = document.getElementById("speakBtn");
+  const pinyinSpeakBtnEl   = document.getElementById("pinyinSpeakBtn");
   const nextBtnEl      = document.getElementById("nextBtn");
   const nextHelpEl     = document.getElementById("nextHelp");
   const progressTextEl = document.getElementById("progressText");
@@ -286,6 +287,7 @@
   const homeBtnEl     = document.getElementById("homeBtn");
 
   speakBtnEl.addEventListener("click", speakCurrentItem);
+  pinyinSpeakBtnEl.addEventListener("click", speakCurrentItem);
 
   nextBtnEl.addEventListener("click", () => {
     if (!answeredCorrectly) return;

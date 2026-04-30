@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kids Chinese Character Game</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css?v=4" />
   </head>
   <body>
     <main class="app" role="application" aria-label="Chinese character learning game">
@@ -46,7 +46,10 @@
           <!-- Question: listen and find -->
           <div class="questionCard">
             <div class="questionLabel">Listen — then choose the correct character</div>
-            <div id="pinyinText" class="pinyinDisplay" aria-live="polite">shān</div>
+            <div class="pinyinRow">
+              <div id="pinyinText" class="pinyinDisplay" aria-live="polite">shān</div>
+              <button id="pinyinSpeakBtn" class="pinyinSpeakBtn" type="button" aria-label="Listen again">🔊</button>
+            </div>
             <div id="emojiHint" class="questionEmoji" aria-live="polite">⛰️</div>
           </div>
 
@@ -88,6 +91,6 @@
       </div>
 
     </main>
-    <script src="./script.js"></script>
+    <script src="./script.js?v=4"></script>
   </body>
 </html>
